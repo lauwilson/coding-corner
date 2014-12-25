@@ -6,29 +6,30 @@ package com.lauwilson.carryadd;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
-
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  * @author wilson
  *
  */
 public class CarryAdder {
+    static Scanner scan;
+    static String input;
+    static String[] inputArray;
+    static int[] intArray;
+    static int maxLength = 0;              // the longest numerical number
+    static int sum = 0;                        // the sum of all the numbers
+    static int[] carryArray;
+    static int carryIn = 0;
     
-    public void printNumber(String number) {
-        for (int i = 0; i < number.length(); i++) {
-            
+    public static void printLine() {
+        for (int i = 0; i < ((Integer) sum).toString().length(); i++) {
+            System.out.print("-");
         }
     }
+    
     public static void main(String[] args) {
-        Scanner scan;
-        String input;
-        String[] inputArray;
-        int maxLength = 0;              // the longest numerical number
-        int sum = 0;                        // the sum of all the numbers
-        
-        // The current digit the loop is isolating and adding.
-        int workingDigit;
-        
         try {
             scan = new Scanner(new File("src" + File.separator + "input.txt"));
         } catch (FileNotFoundException e) {
@@ -39,21 +40,13 @@ public class CarryAdder {
         input = scan.nextLine();
         System.out.println(input);
         inputArray = input.split("[+]");
-        
-        for (int i = 0; i < inputArray.length; i++) {
-            System.out.println(inputArray[i]);
-        }
-        
+
         // Calculate the sum of the numbers
         for (int i = 0; i < inputArray.length; i++) {
             sum += Integer.parseInt(inputArray[i]);
         }
         
-        System.out.println("Sum is: " + sum);
-        
-        
-        
-        // Figure out the longest numberical number for output formatting reasons
+        // Figure out the longest numerical number for output formatting reasons
         for (int i = 0; i < inputArray.length; i++) {
             if (inputArray[i].length() > maxLength) {
                 maxLength = inputArray[i].length();
@@ -69,10 +62,40 @@ public class CarryAdder {
             System.out.println(inputArray[i]);
         }
         
-        for (int i = 0; i < ((Integer) sum).toString().length(); i++) {
-            System.out.print("-");
-        }
+        printLine();
         System.out.println("\n" + sum);
+        printLine();
         
-    }
-}
+        // Convert String array to ints
+        intArray = new int[inputArray.length];
+        for (int i = 0; i < inputArray.length; i++) {
+            intArray[i] = Integer.parseInt(inputArray[i]);
+        }
+        
+        // Add the carries to an array
+        carryArray = new int[maxLength];
+        for (int i = 0; i < maxLength; i++) {
+            int onesDigitTotal = 0;
+            for (int k = 0; k < intArray.length; k++) {
+                onesDigitTotal += intArray[k] % 10;
+                intArray[k] /= 10;
+            }
+            // add the carry-in
+            onesDigitTotal += carryIn;
+            
+            carryArray[i] = onesDigitTotal / 10;
+            carryIn = onesDigitTotal / 10;
+        }
+        
+        // Print the carry array to console
+        System.out.println();
+        for (int i = 0; i < carryArray.length; i++) {
+            if (carryArray[i] == 0) {
+                System.out.print(" ");
+            } else {
+                System.out.print(carryArray[i]);
+            }
+        }
+        
+    } // end of main
+} // end of class
