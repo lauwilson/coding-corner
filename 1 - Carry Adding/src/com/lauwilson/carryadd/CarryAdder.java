@@ -6,8 +6,6 @@ package com.lauwilson.carryadd;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
-import java.util.List;
-import java.util.ArrayList;
 
 /**
  * @author wilson
@@ -53,19 +51,6 @@ public class CarryAdder {
             }
         }
         
-        // printing all numbers with the correct formatting
-        for (int i = 0; i < inputArray.length; i++) {
-            int extraSpacing = ((Integer) sum).toString().length() - inputArray[i].length();
-            for (int j = 0; j < extraSpacing; j++) {
-                System.out.print(" ");
-            }
-            System.out.println(inputArray[i]);
-        }
-        
-        printLine();
-        System.out.println("\n" + sum);
-        printLine();
-        
         // Convert String array to ints
         intArray = new int[inputArray.length];
         for (int i = 0; i < inputArray.length; i++) {
@@ -89,13 +74,29 @@ public class CarryAdder {
         
         // Print the carry array to console
         System.out.println();
-        for (int i = 0; i < carryArray.length; i++) {
+        for (int i = carryArray.length - 1; i > -1; i--) {
             if (carryArray[i] == 0) {
                 System.out.print(" ");
             } else {
                 System.out.print(carryArray[i]);
             }
         }
+        System.out.println(" \tCarry In");
+        
+        // printing all numbers with the correct formatting
+        printLine();
+        System.out.println();
+        for (int i = 0; i < inputArray.length; i++) {
+            int extraSpacing = ((Integer) sum).toString().length() - inputArray[i].length();
+            for (int j = 0; j < extraSpacing; j++) {
+                System.out.print(" ");
+            }
+            System.out.print(inputArray[i]);
+            System.out.println("\tInput #" + (i + 1));
+        }
+        
+        printLine();
+        System.out.println("\n" + sum + "\tTotal");
         
     } // end of main
 } // end of class
