@@ -74,7 +74,7 @@ public class CarryAdder {
         
         // Print the carry array to console
         System.out.println();
-        for (int i = carryArray.length - 1; i > -1; i--) {
+        for (int i = carryArray.length - 2; i > -1; i--) {
             if (carryArray[i] == 0) {
                 System.out.print(" ");
             } else {
