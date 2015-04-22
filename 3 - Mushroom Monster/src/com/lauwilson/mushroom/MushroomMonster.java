@@ -1,4 +1,5 @@
 package com.lauwilson.mushroom;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -9,23 +10,20 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.Scanner;
 
+import com.lauwilson.contestIO.ContestIO;
+
+
 public class MushroomMonster {
     public static void main(String[] args) {
         Scanner scan;
-        PrintWriter out;
-        File fout;
-        FileOutputStream fos;
         BufferedWriter bw;
-        try {
-            scan = new Scanner(new File("A-small-practice.in"));
-            fout = new File("small-output.txt");
-            fos = new FileOutputStream(fout);
-            bw = new BufferedWriter(new OutputStreamWriter(fos));
-            
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found. Terminating Program");
+        
+        if ((scan = ContestIO.setInput("A-small-practice.in")) == null ||
+                (bw = ContestIO.setOutput("small-output.txt")) == null) {
+            System.out.println("IO Setup occured. Terminating Program");
             return;
         }
+        
         int numTestCases = scan.nextInt();
         
         int prevInt;
@@ -79,6 +77,7 @@ public class MushroomMonster {
             }
         }
         try {
+            bw.flush();
             bw.close();
         } catch (IOException e) {
             System.err.println("could not close");
