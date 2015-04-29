@@ -1,0 +1,6 @@
+Z:\git\practiceProblems\Store Credit\Store Credit\bin\Debug\Store Credit.exe.config
+Z:\git\practiceProblems\Store Credit\Store Credit\bin\Debug\Store Credit.exe
+Z:\git\practiceProblems\Store Credit\Store Credit\bin\Debug\Store Credit.pdb
+Z:\git\practiceProblems\Store Credit\Store Credit\obj\Debug\Store Credit.csprojResolveAssemblyReference.cache
+Z:\git\practiceProblems\Store Credit\Store Credit\obj\Debug\Store Credit.exe
+Z:\git\practiceProblems\Store Credit\Store Credit\obj\Debug\Store Credit.pdb

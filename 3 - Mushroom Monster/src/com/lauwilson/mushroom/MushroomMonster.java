@@ -12,12 +12,26 @@ import java.util.Scanner;
 
 import com.lauwilson.contestIO.ContestIO;
 
-
+/**
+ * Google Code Jam 2015 - Round 1A
+ * https://code.google.com/codejam/contest/4224486/dashboard#s=p0
+ * 
+ * @author wilson
+ *
+ */
 public class MushroomMonster {
     public static void main(String[] args) {
+        /**
+         * The scanner which reads from the input file.
+         */
         Scanner scan;
+        
+        /**
+         * The BufferedWriter which will write the output to a file.
+         */
         BufferedWriter bw;
         
+        // attempt to load the scanner and writer. Terminate if exception occurs.
         if ((scan = ContestIO.setInput("A-small-practice.in")) == null ||
                 (bw = ContestIO.setOutput("small-output.txt")) == null) {
             System.out.println("IO Setup occured. Terminating Program");
@@ -29,18 +43,29 @@ public class MushroomMonster {
         int prevInt;
         int newInt;
 
-        
         for (int i = 0; i < numTestCases; i++) {
-            
+            /**
+             * The sum of mushrooms eaten in the first method.
+             */
             int method1Sum = 0;
+            
+            /**
+             * The sum of mushrooms eaten in the second method.
+             */
             int method2Sum = 0;
             
+            /**
+             * The maximum consumption rate of mushrooms that Kaylin potentially eats
+             * in one time period.
+             */
             int consumptionRate = 0;
             
             int numOfInputs = scan.nextInt();
             
+            // set up the array of numbers that represent mushroom values in the case.
             int[] testCase = new int[numOfInputs];
             
+            // scan the initial number of mushrooms into the array.
             newInt = scan.nextInt();
             testCase[0] = newInt;
             
@@ -61,6 +86,8 @@ public class MushroomMonster {
                                                 intervalRate : consumptionRate);
             }
             
+            // loop through the array of mushroom values and determine how many
+            // mushrooms were eaten in the second method.
             for (int k = 0; k < numOfInputs-1; k++) {
                 if (testCase[k] > consumptionRate)
                     method2Sum += consumptionRate;
@@ -68,6 +95,7 @@ public class MushroomMonster {
                     method2Sum += testCase[k];
             }
             
+            // print the values to console and writes it to the file.
             System.out.println("Case #" + (i+1) + ": " + method1Sum + " " + method2Sum);
             try {
                 bw.write("Case #" + (i+1) + ": " + method1Sum + " " + method2Sum);
