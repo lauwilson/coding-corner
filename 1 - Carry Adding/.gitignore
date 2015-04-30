@@ -1,1 +1,7 @@
-/bin/
+# ignore all
+*
+
+# except src
+!README.md
+!.gitignore
+!/src/
