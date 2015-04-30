@@ -1,5 +1,11 @@
-addition to README.md again
-
 Compendium of practice problems written in a variety of languages.
 
-Easy Carry Adding
+reddit.com/r/dailyprogrammer
+----------------------------
+Easy Carry Adding (#192)                    [JAVA]
+
+Google Code Jams
+----------------
+Mushroom Monster (2015 Round 1A)            [JAVA]
+Haircut          (2015 Round 1A)            [JAVA]
+Store Credit     (2010 Qualification Round) [C#]
