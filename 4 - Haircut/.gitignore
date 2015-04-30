@@ -2,7 +2,8 @@
 *
 
 # except src and inputs
-!src/
+!/src/
+!/src/**
 !*.in
 !README.md
 !.gitignore

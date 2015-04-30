@@ -3,5 +3,5 @@
 
 # except these
 !.gitignore
-!/Store Credit/
+!/Store Credit/**
 !README.md

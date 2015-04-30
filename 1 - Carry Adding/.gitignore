@@ -4,4 +4,5 @@
 # except src
 !README.md
 !.gitignore
-!src/
+!/src/
+!/src/**

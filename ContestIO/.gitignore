@@ -2,6 +2,7 @@
 *
 
 # except src
-!src/
+!/src/
+!/src/**
 !README.md
 !.gitignore
