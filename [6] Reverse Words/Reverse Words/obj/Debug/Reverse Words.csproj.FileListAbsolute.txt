@@ -1,6 +1,0 @@
-Z:\git\practiceProblems\Reverse Words\Reverse Words\bin\Debug\Reverse Words.exe.config
-Z:\git\practiceProblems\Reverse Words\Reverse Words\bin\Debug\Reverse Words.exe
-Z:\git\practiceProblems\Reverse Words\Reverse Words\bin\Debug\Reverse Words.pdb
-Z:\git\practiceProblems\Reverse Words\Reverse Words\obj\Debug\Reverse Words.csprojResolveAssemblyReference.cache
-Z:\git\practiceProblems\Reverse Words\Reverse Words\obj\Debug\Reverse Words.exe
-Z:\git\practiceProblems\Reverse Words\Reverse Words\obj\Debug\Reverse Words.pdb

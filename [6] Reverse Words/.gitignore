@@ -1,0 +1,8 @@
+# ignore everything
+*
+
+# except these
+!.gitignore
+!/Reverse Words/
+!/Reverse Words/**
+!README.md
