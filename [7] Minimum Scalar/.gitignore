@@ -1,0 +1,8 @@
+# ignore everything!
+*
+
+# except these files!
+!.gitignore
+!/Minimum Scalar/
+!/Minimum Scalar/**
+!README.md
