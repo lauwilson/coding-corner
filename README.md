@@ -2,10 +2,14 @@ Compendium of practice problems written in a variety of languages.
 
 reddit.com/r/dailyprogrammer
 ----------------------------
-|Easy Carry Adding (#192)                   | [JAVA]|
+|Problem #|Name|Language|
+|---------|----|--------|
+|#192|Easy Carry Adding|[JAVA]|
 
 Google Code Jams
 ----------------
+|Problem|Year|Language|
+|-------|----|--------|
 |Mushroom Monster| (2015 Round 1A)          | [JAVA]|
 |Haircut         | (2015 Round 1A)           | [JAVA]|
 |Store Credit    | (2010 Qualification Round)| [C#]|
