@@ -5,65 +5,107 @@
 #define BUFSIZE 512
 #define STD_IN 0
 #define MAX_STALLS 100000
+#define MAX_POSITION 1000000000
+#define MIN_POSITION 0
 
-int main(void) {
-    int numTests;
-    int numStalls;
-    int numCows;
-    int i;
-    char buffer[BUFSIZE];
+void merge(int *array, int *lhs, int *rhs, int lcount, int rcount) {
+    int arrIdx, lhsIdx, rhsIdx;
+    arrIdx = lhsIdx = rhsIdx = 0;
 
-    numTests = 0;
-    numStalls = 0;
-    numCows = 0;
-    /* get num of tests */
-    if (!fgets(buffer, BUFSIZE, stdin)) {
-        clearerr(stdin);
-        return 1;
-        /* TODO: check EOF or error */
+    while (lhsIdx < lcount && rhsIdx < rcount) {
+        if (lhs[lhsIdx] < rhs[rhsIdx])
+            array[arrIdx++] = lhs[lhsIdx++];
+        else
+            array[arrIdx++] = rhs[rhsIdx++];
     }
 
-    if (!sscanf(buffer, "%d", &numTests)) {
+    while (lhsIdx < lcount)
+        array[arrIdx++] = lhs[lhsIdx++];
+
+    while (rhsIdx < rcount)
+        array[arrIdx++] = rhs[rhsIdx++];
+}
+
+void mergeSort(int *array, int n) {
+    if (n < 2)
+        return;
+
+    int i;
+    int mid = n / 2;
+    int* lhs = malloc(mid * sizeof(int));
+    int* rhs = malloc((n-mid) * sizeof(int));
+    
+    for (i = 0; i < mid; i++)
+        lhs[i] = array[i];
+
+    for (; i < n; i++)
+        rhs[i-mid] = array[i];
+
+    mergeSort(lhs, mid);
+    mergeSort(rhs, (n-mid));
+
+    merge(array, lhs, rhs, mid, (n-mid));
+
+    free(lhs);
+    free(rhs);
+
+}
+
+int main(void) {
+    int numTests = 0;
+    int numStalls = 0;
+    int numCows = 0;
+    int i;
+
+    if (!fscanf(stdin, "%d", &numTests)) {
         fprintf(stderr, "scan # of tests failed\n");
         return 2;
     }
-    fprintf(stderr, "numTests: %d\n", numTests);
 
     for (i = 0; i < numTests; i++) {
         /* get N and C */
-        if (!fgets(buffer, BUFSIZE, stdin)) {
-            clearerr(stdin);
-            return 1;
-        }
-        if (!sscanf(buffer, "%d%d", &numStalls, &numCows)) {
+        if (fscanf(stdin, "%d%d", &numStalls, &numCows) < 2) {
             fprintf(stderr, "scan # of stalls and cows failed");
             return 2;
-        } else {
-            int j;
-            int stalls[MAX_STALLS];
-
-            fprintf(stderr, "numStalls: %d\nnumCows: %d\n", numStalls, numCows);
-            for (j = 0; j < numStalls; j++) {
-                if (!fgets(buffer, BUFSIZE, stdin)) {
-                    clearerr(stdin);
-                    return 1;
-                }
-                if (!sscanf(buffer, "%d", &stalls[j])) {
-                    fprintf(stderr, "scan of stall location failed");
-                    return 2;
-                }
-                fprintf(stderr, "location: %d\n", stalls[j]);
-            }
-            stalls[j] = '\0';
-
-            /* actual logic */
-
-
         }
+        int j;
+        int stalls[numStalls];
 
-        /* Read in the stall locations */
+        for (j = 0; j < numStalls; j++) {
+            if (!fscanf(stdin, "%d", &stalls[j])) {
+                fprintf(stderr, "scan of stall location failed");
+                return 2;
+            }
+        }
+        
+        mergeSort(stalls, numStalls);
+
+        int max = stalls[numStalls-1];
+        int min = 0;
+        int largest_minDist;
+
+        while (min < max) {
+            int numCowsSheltered = 1;
+            int prevCowIdx = 0;
+            int mid = min + ((max - min) / 2);
+            int k;
+
+            for (k = 0; k < numStalls; k++) {
+                if ((stalls[k] - stalls[prevCowIdx]) < mid) {
+                    continue;
+                }
+                prevCowIdx = k;
+                numCowsSheltered++;
+            }
+
+            if (numCowsSheltered < numCows) { /* number too big */
+                max = mid;
+            } else { /* number just right, or can be bigger */
+                largest_minDist = mid;
+                min = largest_minDist + 1;
+            }
+        }
+        fprintf(stdout, "%d\n", largest_minDist);
     }
-
-
     return 0;
 }

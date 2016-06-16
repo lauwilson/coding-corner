@@ -1,2 +1,5 @@
-all:
-	gcc-6 -W -Wall -pedantic -ansi aggro.c
+build:
+	gcc-6 -W -Wall -pedantic aggro.c
+
+run:
+	./a.out < input
